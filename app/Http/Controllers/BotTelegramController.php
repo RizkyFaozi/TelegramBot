@@ -11,6 +11,13 @@ class BotTelegramController extends Controller
 {
     public function inbound(Request $request)
     {
+
+        //Setting in Env
+        // TELEGRAM_BOT_TOKEN="bot6899260953:AAGncVBPw3gjrCjhUgZQIaLZ94QNb_j50g4"
+        // TELEGRAM_WEBHOOK_URL='<url>/api/Faozitele_bot/webhooks'
+        // TELEGRAM_API_ENDPOINT=https://api.telegram.org
+        // REGISTER_POINT=https://api.telegram.org/bot6899260953:AAGncVBPw3gjrCjhUgZQIaLZ94QNb_j50g4/setWebhook?url=<url>/api/telegram/webhooks/inbound
+
         log::info($request->all());
 
         // get telegram chat_id and reply
