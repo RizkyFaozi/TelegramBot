@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BotTelegramController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('setWebhook', [BotTelegramController::class, 'setWebhook']);
+Route::post('Faozitele_bot/webhooks', [BotTelegramController::class, 'Sendback']);

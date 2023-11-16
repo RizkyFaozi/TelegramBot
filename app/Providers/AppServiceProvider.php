@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\TelegramBot;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // design pattern
+        $this->app->singleton('telegram_bot', function(){
+            return new TelegramBot();
+        });
     }
 
     /**

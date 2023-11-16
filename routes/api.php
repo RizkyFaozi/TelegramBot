@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\BotTelegramController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +21,13 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::prefix('telegram/webhooks')->group(function() {
-    Route::post('inbound',function(Request $request) {
-        \log::info($request->all());
-    });
+    // Route::post('inbound',function(Request $request) {
+    //     log::info($request->all());
+    // });
+
+    Route::post('inbound',[BotTelegramController::class,'inbound'])->name('telegram.inbound');
 });
 
-
+//https://api.telegram.org/bot6899260953:AAGncVBPw3gjrCjhUgZQIaLZ94QNb_j50g4/setWebhook?url=https://f07c-36-90-6-48.ngrok-free.app/api/telegram/webhooks/inbound
 
 
