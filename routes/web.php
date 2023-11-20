@@ -14,5 +14,9 @@ use App\Http\Controllers\BotTelegramController;
 |
 */
 
+Route::get('/', function () {
+    return 'Hello server';
+});
+Route::get('telegram/webhooks', [BotTelegramController::class, 'inbound']);
 Route::get('setWebhook', [BotTelegramController::class, 'setWebhook']);
-Route::post('Faozitele_bot/webhooks', [BotTelegramController::class, 'Sendback']);
+Route::post('Faozitele_bot/webhooks', [BotTelegramController::class, 'inbound']);

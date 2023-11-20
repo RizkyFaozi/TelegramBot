@@ -23,7 +23,7 @@ class BotTelegramController extends Controller
         // get telegram chat_id and reply
         if($request->message != null){
         $chat_id            = $request->message['from']['id'];
-        $username            = $request->message['from']['username'];
+        $username            = $request->message['from']['first_name'];
         $reply_to_message   = $request->message['message_id'];
         $texts   = $request->message['text'];
 
@@ -51,18 +51,19 @@ class BotTelegramController extends Controller
         log::info("reply_to_message: {$reply_to_message}");
         
         //first message
-        if(!cache()->has("chat_id_{$chat_id}" || $texts == "/start")){
+        if(!cache()->has("chat_id_{$chat_id}")){
 
             $text = "Hallo And Welcome To Bot Telegram :)";
-            $text.= "what are you looking for?";
+            $text.= "what movie are you looking for?";
 
-            cache()->put("chat_id_{$chat_id}",true,now()->addMinute(60));
+            cache()->put("chat_id_{$chat_id}",true,now()->addMinute(1));
 
         //Contiditon After First Message
         } else {
             
             $text = "These are the results we found.";
             $text.= $omdbapi['Search'][0]['Title'];
+
         }
         //Send Photo
         $result = app('telegram_bot')->sendPhoto($chat_id,$images);
